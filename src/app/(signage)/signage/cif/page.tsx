@@ -102,11 +102,11 @@ export default function SignagePage() {
       </div>
       <motion.div
         layout="position"
-        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem] items-center"
+        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem] grainger:mt-[2rem] items-center"
         ref={scopeBody}
       >
         <div className="flex flex-col">
-          <p className="text-[8rem] mb-4 leading-none font-medium">
+          <p className="text-[8rem] grainger:text-[7rem] mb-4 leading-none font-medium">
             A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
           </p>
           <p className="text-[4rem] leading-none">
@@ -116,8 +116,7 @@ export default function SignagePage() {
         <div className="flex flex-col ml-auto">
           <img
             src="/assets/qr-fallctf.png"
-            className="pointer-events-none"
-            width={400} height={400}
+            className="pointer-events-none h-[400px] grainger:h-[350px] w-auto"
             alt="https://sigpwny.com/fallctf"
           />
         </div>
@@ -127,12 +126,19 @@ export default function SignagePage() {
         className="opacity-0 mt-auto flex flex-col"
         ref={scopeDetails}
       >
-        <p className="text-[4rem] font-medium">
-          September 23rd, 12–6 PM
-        </p>
-        <p className="text-[4rem] leading-none font-medium">
-          CIF 3039
-        </p>
+        <span className="grainger:hidden">
+          <p className="text-[4rem] font-medium">
+            September 23rd, 12–6 PM
+          </p>
+          <p className="text-[4rem] leading-none font-medium">
+            CIF 3039
+          </p>
+        </span>
+        <span className="hidden grainger:flex">
+          <p className="text-[4rem] leading-none font-medium">
+            September 23rd, 12–6 PM @ CIF 3039
+          </p>
+        </span>
       </motion.div>
     </motion.div>
   );

@@ -38,6 +38,9 @@ const config: Config = {
           "monospace",
         ],
       },
+      screens: {
+        "grainger": {"raw": "(min-height: 0px) and (max-height: 900px)"},
+      }
     },
   },
   plugins: [],
