@@ -1,10 +1,8 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
 import Countdown from "@/components/Countdown";
 import LogoReveal from "@/components/LogoReveal";
-import QRCode from "@/components/QRCode";
 
 async function seqFromRight(scope: any, animate: any, delay: number = 0) {
   await animate(scope.current, {
@@ -104,7 +102,7 @@ export default function SignagePage() {
       </div>
       <motion.div
         layout="position"
-        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem]"
+        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem] items-center"
         ref={scopeBody}
       >
         <div className="flex flex-col">
@@ -112,11 +110,16 @@ export default function SignagePage() {
             A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
           </p>
           <p className="text-[4rem] leading-none">
-            Capture the flags. Teams of two.
+            Register at <span className="text-yellow-dark font-medium">sigpwny.com/fallctf</span>.
           </p>
         </div>
         <div className="flex flex-col ml-auto">
-          <QRCode />
+          <img
+            src="/assets/qr-fallctf.png"
+            className="pointer-events-none"
+            width={400} height={400}
+            alt="https://sigpwny.com/fallctf"
+          />
         </div>
       </motion.div>
       <motion.div
