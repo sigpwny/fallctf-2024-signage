@@ -52,7 +52,7 @@ export default function SignagePage() {
     // Automatically refresh the page
     setTimeout(() => {
       location.reload();
-    }, 1000 * 60);
+    }, 1000 * 120);
   }, []);
 
   return (
