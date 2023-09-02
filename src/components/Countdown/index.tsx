@@ -82,14 +82,14 @@ export default function Countdown({ time_start, time_close }: Props) {
             {timer.days > 0 ? (
               <>
                 <div className="flex flex-col">
-                  <div className="text-[8rem] font-bold">
+                  <div className="text-[7rem] font-bold">
                     {formatNumber(timer.days)}
                   </div>
                   <p>
                     {timer.days === 1 ? "Day" : "Days"}
                   </p>
                 </div>
-                <span className="text-[8rem] font-bold">
+                <span className="text-[7rem] font-bold">
                   :
                 </span>
               </>
@@ -97,31 +97,31 @@ export default function Countdown({ time_start, time_close }: Props) {
             {timer.days > 0 || timer.hours > 0 ? (
               <>
                 <div className="flex flex-col">
-                  <div className="text-[8rem] font-bold">
+                  <div className="text-[7rem] font-bold">
                     {formatNumber(timer.hours)}
                   </div>
                   <p>
                     {timer.hours === 1 ? "Hour" : "Hours"}
                   </p>
                 </div>
-                <span className="text-[8rem] font-bold">
+                <span className="text-[7rem] font-bold">
                   :
                 </span>
               </>
             ) : null}
             <div className="flex flex-col">
-              <div className="text-[8rem] font-bold">
+              <div className="text-[7rem] font-bold">
                 {formatNumber(timer.minutes)}
               </div>
               <p>
                 {timer.minutes === 1 ? "Min" : "Mins"}
               </p>
             </div>
-            <span className="text-[8rem] font-bold">
+            <span className="text-[7rem] font-bold">
               :
             </span>
             <div className="flex flex-col">
-              <div className="text-[8rem] font-bold">
+              <div className="text-[7rem] font-bold">
                 {formatNumber(timer.seconds)}
               </div>
               <p>

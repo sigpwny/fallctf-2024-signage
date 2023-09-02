@@ -14,15 +14,22 @@ export default function LogoReveal() {
   };
   const char_variant = {
     hidden: {
-      fill: "rgb(0, 0, 0)"
+      fill: "rgba(0, 0, 0, 0.0)"
     },
     visible: {
-      fill: "rgb(255, 255, 255)",
+      fill: "url(#YellowGradient)",
       transition: {
         duration: 0.2
       }
     }
   };
+  const transition = {
+    duration: 5,
+    repeat: Infinity,
+    repeatType: "loop"
+  };
+  const dark_yellow = "rgba(255, 178, 0, 1.0)";
+  const light_yellow = "rgba(255, 255, 0, 1.0)";
   return (
     <motion.svg
       viewBox="0 0 1024 150"
@@ -30,6 +37,65 @@ export default function LogoReveal() {
       fontSize="10rem"
       fontWeight="bold"
     >
+      <linearGradient
+        id="YellowGradient"
+      >
+        <motion.stop
+          offset="0%"
+          animate={{
+            stopColor: [dark_yellow, light_yellow, dark_yellow, dark_yellow, dark_yellow, dark_yellow, dark_yellow],
+            transition: {
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop"
+            }
+          }}
+        />
+        <motion.stop
+          offset="25%"
+          animate={{
+            stopColor: [dark_yellow, dark_yellow, light_yellow, dark_yellow, dark_yellow, dark_yellow, dark_yellow],
+            transition: {
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop"
+            }
+          }}
+        />
+        <motion.stop
+          offset="50%"
+          animate={{
+            stopColor: [dark_yellow, dark_yellow, dark_yellow, light_yellow, dark_yellow, dark_yellow, dark_yellow],
+            transition: {
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop"
+            }
+          }}
+        />
+        <motion.stop
+          offset="75%"
+          animate={{
+            stopColor: [dark_yellow, dark_yellow, dark_yellow, dark_yellow, light_yellow, dark_yellow, dark_yellow],
+            transition: {
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop"
+            }
+          }}
+        />
+        <motion.stop
+          offset="100%"
+          animate={{
+            stopColor: [dark_yellow, dark_yellow, dark_yellow, dark_yellow, dark_yellow, light_yellow, dark_yellow],
+            transition: {
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop"
+            }
+          }}
+        />
+      </linearGradient>
       <symbol id="s-text">
         <text
           textAnchor="start"
@@ -40,6 +106,7 @@ export default function LogoReveal() {
             variants={text_variant}
             initial="hidden"
             animate="visible"
+            // fill="url(#YellowGradient)"
           >
             {string.split("").map((char, i) => (
               <motion.tspan
@@ -66,7 +133,7 @@ export default function LogoReveal() {
             ease: cubicBezier(0.995, 0.200, 0.435, 0.960),
           }}
           strokeWidth={2}
-          stroke="rgb(255, 255, 255)"
+          stroke="url(#YellowGradient)"
         >
         </motion.use>
       </g>

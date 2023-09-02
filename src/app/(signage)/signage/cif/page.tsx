@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
 import Countdown from "@/components/Countdown";
 import LogoReveal from "@/components/LogoReveal";
+import QRCode from "@/components/QRCode";
 
 async function seqFromRight(scope: any, animate: any, delay: number = 0) {
   await animate(scope.current, {
@@ -46,16 +47,20 @@ export default function SignagePage() {
       setLoaded(true);
       seqFromRight(scopeHeader, animateScopeHeader, 300);
       seqFadeIn(scopeHeader, animateScopeHeader, 300);
-      seqFadeIn(scopeTimer, animateScopeTimer, 500);
-      seqFadeIn(scopeBody, animateScopeBody, 750);
-      seqFadeIn(scopeDetails, animateScopeDetails, 1200);
+      seqFadeIn(scopeBody, animateScopeBody, 500);
+      seqFadeIn(scopeTimer, animateScopeTimer, 1000);
+      seqFadeIn(scopeDetails, animateScopeDetails, 1000);
     }, 4000);
+    // Automatically refresh the page
+    setTimeout(() => {
+      location.reload();
+    }, 1000 * 60);
   }, []);
 
   return (
     <motion.div
       layout="position"
-      className="m-auto w-[94vw] h-[90vh] flex flex-col grow-1 shrink-0 relative"
+      className="m-auto w-[92vw] h-[88vh] flex flex-col grow-1 shrink-0 relative"
     >
       <div className="flex flex-row justify-between">
         <div className="flex flex-col">
@@ -99,16 +104,19 @@ export default function SignagePage() {
       </div>
       <motion.div
         layout="position"
-        className="opacity-0 flex flex-col flex-grow-1 flex-shrink-0 mt-[6rem]"
+        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem]"
         ref={scopeBody}
       >
-        <div>
+        <div className="flex flex-col">
           <p className="text-[8rem] mb-4 leading-none font-medium">
-            A beginner-friendly<br /> hacking competition.
+            A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
           </p>
           <p className="text-[4rem] leading-none">
             Capture the flags. Teams of two.
           </p>
+        </div>
+        <div className="flex flex-col ml-auto">
+          <QRCode />
         </div>
       </motion.div>
       <motion.div
