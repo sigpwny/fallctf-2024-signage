@@ -5,7 +5,7 @@ export default function ScoreboardPage() {
   return (
     <div className="grid grid-cols-2 gap-2 p-2">
       <div className="flex flex-col">
-        <span className="font-medium text-2xl">
+        <span className="font-medium text-xl">
           Advanced Division
         </span>
         <Scoreboard
@@ -15,7 +15,7 @@ export default function ScoreboardPage() {
         />
       </div>
       <div className="flex flex-col">
-        <span className="font-medium text-2xl">
+        <span className="font-medium text-xl">
           Beginner Division
         </span>
         <Scoreboard

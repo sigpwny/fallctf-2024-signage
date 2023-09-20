@@ -23,7 +23,7 @@ export default function Scoreboard(data: ScoreboardProps) {
       account_id: 1,
       account_type: "user",
       name: "thisisareallylongnamethatshouldntfitinthescoreboardbutitdoes",
-      score: 100,
+      score: 24803,
       pos: 1,
     },
     {
@@ -92,14 +92,16 @@ export default function Scoreboard(data: ScoreboardProps) {
       {scoreboard.length != 0 ? (
         <>
           {scoreboard.filter((user, idx) => idx < display_limit).map((user, idx) => (
-            <div key={idx} className="flex flex-row bg-surface rounded-lg p-1">
-              <span className="flex flex-col w-[5ch] font-mono">
+            <div key={idx} className="flex flex-row bg-surface-100 border-surface-150 border-2 rounded-lg p-1">
+              <span className="flex flex-col basis-1/12 font-mono">
                 {idx + 1}
               </span>
-              <span className="flex flex-col font-mono">
-                {user.name}
+              <span className="flex flex-col basis-9/12 font-mono overflow-hidden">
+                <span className="whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
+                  {user.name}
+                </span>
               </span>
-              <span className="flex flex-col w-[5ch] font-mono">
+              <span className="flex flex-col basis-2/12 font-mono">
                 {user.score}
               </span>
             </div>
