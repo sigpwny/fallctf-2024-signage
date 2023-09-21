@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
 import Countdown, { TimedComponent } from "@/components/NewCountdown";
@@ -35,7 +34,7 @@ async function seqFadeIn(scope: any, animate: any, delay: number = 0) {
 }
 
 export default function SignagePage() {
-  const time_start = "2023-09-21T12:00:00-05:00"
+  const time_start = "2023-09-23T12:00:00-05:00"
   const time_close = "2023-09-23T18:00:00-05:00"
   const [loaded, setLoaded] = useState(false);
   const [scopeHeader, animateScopeHeader] = useAnimate();
@@ -54,7 +53,7 @@ export default function SignagePage() {
     // Automatically refresh the page
     setTimeout(() => {
       location.reload();
-    }, 1000 * 120);
+    }, 1000 * 300);
   }, []);
   const before_body = (
     <div className="flex flex-row w-full mt-7 grainger:mt-1">
@@ -77,8 +76,7 @@ export default function SignagePage() {
   );
   const during_body = (
     <span className="animate-translate-right w-full">
-      {/* <Scoreboard ctfd_url="https://fallctf.sigpwny.com" limit={5} /> */}
-      <Scoreboard ctfd_url="http://signage-api.sigpwny.com" limit={5} />
+      <Scoreboard ctfd_url="https://fallctf.sigpwny.com" limit={5} />
     </span>
   );
   const during_details_solve = (
@@ -141,22 +139,6 @@ export default function SignagePage() {
         className="opacity-0 flex flex-row grow-1 flex-shrink-0 mt-1 items-center"
         ref={scopeBody}
       >
-        {/* <div className="flex flex-col">
-          <p className="text-4xl grainger:text-3xl mb-4 leading-none font-medium">
-            A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
-          </p>
-          <p className="text-xl leading-none">
-            Register at <span className="text-yellow-dark font-medium">sigpwny.com/fallctf</span>.
-          </p>
-        </div>
-        <div className="flex flex-col ml-auto">
-          <img
-            src="/assets/qr-fallctf.png"
-            className="pointer-events-none h-[400px] grainger:h-[350px] w-auto"
-            alt="https://sigpwny.com/fallctf"
-          />
-        </div> */}
-        {/* <Scoreboard ctfd_url="https://signage-api.sigpwny.com" limit={5} /> */}
         <TimedComponent time_start={time_start} time_close={time_close} before={before_body} during={during_body} after={during_body} />
       </motion.div>
       <motion.div
