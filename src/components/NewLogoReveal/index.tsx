@@ -34,7 +34,7 @@ export default function LogoReveal() {
     <motion.svg
       viewBox="0 0 1024 150"
       display="block"
-      fontSize="10rem"
+      fontSize="3.3rem"
       fontWeight="bold"
     >
       <linearGradient
