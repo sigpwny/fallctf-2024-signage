@@ -11,12 +11,50 @@ interface CTFdScoreboardUserTeam {
 
 interface ScoreboardProps {
   ctfd_url: string;
-  matched: boolean;
   limit?: number;
 }
 
-export default function Scoreboard(data: ScoreboardProps) {
-  const { ctfd_url, matched, limit } = data;
+interface ScoreboardTableProps {
+  scoreboard: CTFdScoreboardUserTeam[];
+  limit?: number;
+}
+
+export function ScoreboardTable(props: ScoreboardTableProps) {
+  const { scoreboard, limit } = props;
+  const display_limit = limit === undefined ? scoreboard.length : limit;
+  return (
+    <div className="flex flex-col gap-1 w-full">
+      {scoreboard.length != 0 ? (
+        <>
+          {scoreboard.filter((user, idx) => idx < display_limit).map((user, idx) => (
+            <div key={idx} className="flex flex-row bg-surface-100 border-surface-150 border-2 rounded-lg p-1">
+              <span className="flex flex-col basis-1/12 font-mono">
+                {idx + 1}
+              </span>
+              <span className="flex flex-col basis-9/12 font-mono overflow-hidden">
+                <span className="whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
+                  {user.name}
+                </span>
+              </span>
+              <span className="flex flex-col basis-2/12 font-mono">
+                {user.score}
+              </span>
+            </div>
+          ))}
+        </>
+      ) : (
+        <div className="flex flex-row">
+          <span className="font-medium leading-none">
+            Scoreboard is currently hidden
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function Scoreboard(props: ScoreboardProps) {
+  const { ctfd_url, limit } = props;
   // Test data
   const test_scoreboard = [
     {
@@ -69,7 +107,8 @@ export default function Scoreboard(data: ScoreboardProps) {
       pos: 7,
     }
   ];
-  const [scoreboard, setScoreboard] = useState<CTFdScoreboardUserTeam[]>(test_scoreboard);
+  const [matched_scoreboard, setMatchedScoreboard] = useState<CTFdScoreboardUserTeam[]>(test_scoreboard);
+  const [unmatched_scoreboard, setUnmatchedScoreboard] = useState<CTFdScoreboardUserTeam[]>(test_scoreboard);
   // Initialize split scoreboard from the CTFd API
   useEffect(() => {
     async function fetchScoreboard() {
@@ -79,41 +118,31 @@ export default function Scoreboard(data: ScoreboardProps) {
       const data = await response.json();
       if (!data.success || !data.data || !data.data.matched || !data.data.unmatched) return;
       console.log(data.data)
-      // Get first 5 users from the matched or unmatched scoreboard, or all if limit is not set
-      // const scoreboard = matched ? data.data.matched : data.data.unmatched;
-      // const scoreboard_limit = limit ? limit : scoreboard.length;
-      // setScoreboard(scoreboard.slice(0, scoreboard_limit));
+      setMatchedScoreboard(data.data.matched as CTFdScoreboardUserTeam[]);
+      setUnmatchedScoreboard(data.data.unmatched as CTFdScoreboardUserTeam[]);
     }
     // fetchScoreboard();
   }, []);
-  const display_limit = limit ? limit : scoreboard.length;
   return (
-    <div className="flex flex-col gap-1 w-full">
-      {scoreboard.length != 0 ? (
-        <>
-          {scoreboard.filter((user, idx) => idx < display_limit).map((user, idx) => (
-            <div key={idx} className="flex flex-row bg-surface-100 border-surface-150 border-2 rounded-lg p-1">
-              <span className="flex flex-col basis-1/12 font-mono">
-                {idx + 1}
-              </span>
-              <span className="flex flex-col basis-9/12 font-mono overflow-hidden">
-                <span className="whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
-                  {user.name}
-                </span>
-              </span>
-              <span className="flex flex-col basis-2/12 font-mono">
-                {user.score}
-              </span>
-            </div>
-          ))}
-        </>
-      ) : (
-        <div className="flex flex-row">
-          <span className="font-medium leading-none">
-            Scoreboard is currently hidden
-          </span>
-        </div>
-      )}
+    <div className="grid grid-cols-2 gap-2 p-2">
+      <div className="flex flex-col">
+        <span className="font-medium text-xl">
+          Advanced Division
+        </span>
+        <ScoreboardTable
+          scoreboard={matched_scoreboard}
+          limit={limit}
+        />
+      </div>
+      <div className="flex flex-col">
+        <span className="font-medium text-xl">
+          Beginner Division
+        </span>
+        <ScoreboardTable
+          scoreboard={unmatched_scoreboard}
+          limit={limit}
+        />
+      </div>
     </div>
   );
 }

@@ -70,26 +70,26 @@ export default function Countdown({ time_start, time_close }: Props) {
   return (
     <>
       {timer.status !== TimerStatus.UNINITIALIZED && timer.status !== TimerStatus.AFTER_CLOSE ? (
-        <div className="flex flex-col">
-          <motion.p layout="position" className="text-[3rem] leading-none">
+        <div className="flex flex-col leading-none">
+          <motion.span layout="position" className="leading-none">
             {timer.status === TimerStatus.BEFORE_START ?
               "Starting in" : timer.status === TimerStatus.DURING ?
               "Ending in" :
               "Ended"
             }
-          </motion.p>
+          </motion.span>
           <div className="flex flex-row">
             {timer.days > 0 ? (
               <>
                 <div className="flex flex-col">
-                  <div className="text-[7rem] font-bold">
+                  <div className="text-4xl font-bold">
                     {formatNumber(timer.days)}
                   </div>
-                  <p>
+                  <span>
                     {timer.days === 1 ? "Day" : "Days"}
-                  </p>
+                  </span>
                 </div>
-                <span className="text-[7rem] font-bold">
+                <span className="text-4xl font-bold">
                   :
                 </span>
               </>
@@ -97,36 +97,36 @@ export default function Countdown({ time_start, time_close }: Props) {
             {timer.days > 0 || timer.hours > 0 ? (
               <>
                 <div className="flex flex-col">
-                  <div className="text-[7rem] font-bold">
+                  <div className="text-4xl font-bold">
                     {formatNumber(timer.hours)}
                   </div>
-                  <p>
+                  <span>
                     {timer.hours === 1 ? "Hour" : "Hours"}
-                  </p>
+                  </span>
                 </div>
-                <span className="text-[7rem] font-bold">
+                <span className="text-4xl font-bold">
                   :
                 </span>
               </>
             ) : null}
             <div className="flex flex-col">
-              <div className="text-[7rem] font-bold">
+              <div className="text-4xl font-bold">
                 {formatNumber(timer.minutes)}
               </div>
-              <p>
+              <span>
                 {timer.minutes === 1 ? "Min" : "Mins"}
-              </p>
+              </span>
             </div>
-            <span className="text-[7rem] font-bold">
+            <span className="text-4xl font-bold">
               :
             </span>
             <div className="flex flex-col">
-              <div className="text-[7rem] font-bold">
+              <div className="text-4xl font-bold">
                 {formatNumber(timer.seconds)}
               </div>
-              <p>
+              <span>
                 {timer.seconds === 1 ? "Sec" : "Secs"}
-              </p>
+              </span>
             </div>
           </div>
         </div>
