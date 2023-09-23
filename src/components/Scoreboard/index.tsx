@@ -121,7 +121,7 @@ export default function Scoreboard(props: ScoreboardProps) {
       if (!data.success || !data.data || !data.data.matched || !data.data.unmatched) return;
       console.log(data.data)
       setMatchedScoreboard(data.data.matched as CTFdScoreboardUserTeam[]);
-      setUnmatchedScoreboard(data_full.data.filter(t => !data.data.matched.filter(t2 => t.account_id === t2.account_id).length) as CTFdScoreboardUserTeam[]);
+      setUnmatchedScoreboard(data_full.data.filter((t : any) => !data.data.matched.filter((t2 : any) => t.account_id === t2.account_id).length) as CTFdScoreboardUserTeam[]);
     }
     fetchScoreboard();
     setInterval(fetchScoreboard, 1000 * 10);
