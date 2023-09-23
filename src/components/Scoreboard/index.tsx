@@ -111,14 +111,17 @@ export default function Scoreboard(props: ScoreboardProps) {
   useEffect(() => {
     async function fetchScoreboard() {
       const endpoint_scoreboard = new URL("api/v1/split_scores", ctfd_url);
+      const endpoint_scoreboard_full = new URL("api/v1/scoreboard", ctfd_url);
       const response = await fetch(endpoint_scoreboard, { redirect: "follow", cache: "reload" });
+      const response_full = await fetch(endpoint_scoreboard_full, { redirect: "follow", cache: "reload" });
       console.log(endpoint_scoreboard)
-      if (!response.ok) return;
+      if (!response.ok || !response_full.ok) return;
       const data = await response.json();
+      const data_full = await response_full.json()
       if (!data.success || !data.data || !data.data.matched || !data.data.unmatched) return;
       console.log(data.data)
       setMatchedScoreboard(data.data.matched as CTFdScoreboardUserTeam[]);
-      setUnmatchedScoreboard(data.data.unmatched as CTFdScoreboardUserTeam[]);
+      setUnmatchedScoreboard(data_full.data.filter(t => !data.data.matched.filter(t2 => t.account_id === t2.account_id).length) as CTFdScoreboardUserTeam[]);
     }
     fetchScoreboard();
     setInterval(fetchScoreboard, 1000 * 10);
