@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
-import Countdown from "@/components/Countdown";
-import LogoReveal from "@/components/LogoReveal";
+import Countdown, { TimedComponent } from "@/components/NewCountdown";
+import LogoReveal from "@/components/NewLogoReveal";
+import Scoreboard from "@/components/Scoreboard";
 
 async function seqFromRight(scope: any, animate: any, delay: number = 0) {
   await animate(scope.current, {
@@ -52,9 +53,42 @@ export default function SignagePage() {
     // Automatically refresh the page
     setTimeout(() => {
       location.reload();
-    }, 1000 * 120);
+    }, 1000 * 300);
   }, []);
-
+  const before_body = (
+    <div className="flex flex-row w-full mt-7 grainger:mt-1">
+      <div className="flex flex-col">
+        <p className="text-4xl grainger:text-3xl mb-4 leading-none font-medium">
+          A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
+        </p>
+        <p className="text-xl leading-none">
+          Register at <span className="text-yellow-dark font-medium">sigpwny.com/fallctf</span>.
+        </p>
+      </div>
+      <div className="flex flex-col ml-auto">
+        <img
+          src="/assets/qr-fallctf.png"
+          className="pointer-events-none h-[400px] grainger:h-[350px] w-auto"
+          alt="https://sigpwny.com/fallctf"
+        />
+      </div>
+    </div>
+  );
+  const during_body = (
+    <span className="animate-translate-right w-full">
+      <Scoreboard ctfd_url="https://fallctf.sigpwny.com" limit={5} />
+    </span>
+  );
+  const during_details_solve = (
+    <span className="animate-translate-right">
+      <p className="text-xl font-medium">
+        Solve the Challenges!
+      </p>
+      <p className="text-xl text-yellow-dark leading-none font-medium">
+        sigpwny.com/fallctf
+      </p>
+    </span>
+  );
   return (
     <motion.div
       layout="position"
@@ -67,7 +101,7 @@ export default function SignagePage() {
             className="opacity-0 h-fit w-fit"
             ref={scopeHeader}
           >
-            <p className="font-medium text-[4rem] leading-none">
+            <p className="font-medium text-xl leading-none">
               SIGPwny Presents
             </p>
           </motion.div>
@@ -94,7 +128,7 @@ export default function SignagePage() {
         </div>
         <motion.div
           layout="position"
-          className="opacity-0 text-5xl font-medium"
+          className="opacity-0 font-medium"
           ref={scopeTimer}
         >
           <Countdown time_start={time_start} time_close={time_close} />
@@ -102,40 +136,29 @@ export default function SignagePage() {
       </div>
       <motion.div
         layout="position"
-        className="opacity-0 flex flex-row flex-grow-1 flex-shrink-0 mt-[6rem] grainger:mt-[2rem] items-center"
+        className="opacity-0 flex flex-row grow-1 flex-shrink-0 mt-1 items-center"
         ref={scopeBody}
       >
-        <div className="flex flex-col">
-          <p className="text-[8rem] grainger:text-[7rem] mb-4 leading-none font-medium">
-            A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
-          </p>
-          <p className="text-[4rem] leading-none">
-            Register at <span className="text-yellow-dark font-medium">sigpwny.com/fallctf</span>.
-          </p>
-        </div>
-        <div className="flex flex-col ml-auto">
-          <img
-            src="/assets/qr-fallctf.png"
-            className="pointer-events-none h-[400px] grainger:h-[350px] w-auto"
-            alt="https://sigpwny.com/fallctf"
-          />
-        </div>
+        <TimedComponent time_start={time_start} time_close={time_close} before={before_body} during={during_body} after={during_body} />
       </motion.div>
       <motion.div
         layout="position"
         className="opacity-0 mt-auto flex flex-col"
         ref={scopeDetails}
       >
-        <span className="grainger:hidden">
-          <p className="text-[4rem] font-medium">
-            September 23rd, 12–6 PM
-          </p>
-          <p className="text-[4rem] leading-none font-medium">
-            CIF 3039
-          </p>
+        <span className="grainger:hidden grid grid-cols-2 gap-2">
+          <motion.span layout="position">
+            <p className="text-xl font-medium">
+              September 23rd, 12–6 PM
+            </p>
+            <p className="text-xl leading-none font-medium">
+              CIF 3039
+            </p>
+          </motion.span>
+          <TimedComponent time_start={time_start} time_close={time_close} before={null} during={during_details_solve} after={during_details_solve} />
         </span>
         <span className="hidden grainger:flex">
-          <p className="text-[4rem] leading-none font-medium">
+          <p className="text-xl leading-none font-medium">
             September 23rd, 12–6 PM @ CIF 3039
           </p>
         </span>
