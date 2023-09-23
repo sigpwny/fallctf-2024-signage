@@ -1,0 +1,18 @@
+html {
+  font-size: 48px;
+}
+
+.animate-translate-right {
+  animation: translate-right 0.2s ease-in;
+}
+
+@keyframes translate-right {
+  0% {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

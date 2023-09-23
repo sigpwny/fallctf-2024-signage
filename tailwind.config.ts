@@ -16,6 +16,10 @@ const config: Config = {
       colors: {
         "yellow-dark": "rgba(255, 178, 0, 1.0)",
         "yellow-light": "rgba(255, 255, 0, 1.0)",
+        "surface": {
+          "100": "rgba(34, 34, 34, 1.0)",
+          "150": "rgba(51, 51, 51, 1.0)",
+        },
       },
       container: {
         center: true,
