@@ -2,7 +2,7 @@
 import { motion, cubicBezier } from "framer-motion";
 
 export default function LogoReveal() {
-  const string = "Fall CTF 2023";
+  const string = "Fall CTF 2024";
   const text_variant = {
     hidden: {},
     visible: {

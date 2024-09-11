@@ -3,7 +3,7 @@ import "@/styles/fonts.css";
 import "@/styles/signage.css";
 
 export const metadata = {
-  title: "Fall CTF 2023",
+  title: "Fall CTF 2024",
   description: "A CTF by SIGPwny",
 };
 

@@ -4,7 +4,7 @@ import Seo from "@/components/Seo";
 import PreloadResources from "./preload-resources";
 
 export const metadata = {
-  title: "Fall CTF 2023",
+  title: "Fall CTF 2024",
   description: "A CTF by SIGPwny",
 };
 
