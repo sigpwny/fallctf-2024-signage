@@ -102,7 +102,7 @@ export default function SignagePage() {
             ref={scopeHeader}
           >
             <p className="font-medium text-xl leading-none">
-              SIGPwny + WiCyS Presents
+              SIGPwny + WiCyS
             </p>
           </motion.div>
           <motion.div
