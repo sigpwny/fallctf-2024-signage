@@ -14,11 +14,11 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        "yellow-dark": "rgba(255, 178, 0, 1.0)",
-        "yellow-light": "rgba(255, 255, 0, 1.0)",
+        "yellow-dark": "rgba(204, 102, 238, 1.0)",
+        "yellow-light": "rgba(227, 155, 250, 1.0)",
         "surface": {
-          "100": "rgba(34, 34, 34, 1.0)",
-          "150": "rgba(51, 51, 51, 1.0)",
+          "100": "rgba(var(34, 34, 34, 1.0)",
+          "150": "rgba(var(51, 51, 51, 1.0)",
         },
       },
       container: {

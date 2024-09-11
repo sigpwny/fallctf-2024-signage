@@ -62,21 +62,21 @@ export default function SignagePage() {
           A beginner-friendly<br /> <span className="text-yellow-dark">hacking</span> competition.
         </p>
         <p className="text-xl leading-none">
-          Register at <span className="text-yellow-dark font-medium">sigpwny.com/fallctf</span>.
+          Register at <span className="text-yellow-dark font-medium">2024.fallctf.com</span>.
         </p>
       </div>
       <div className="flex flex-col ml-auto">
         <img
           src="/assets/qr-fallctf.png"
           className="pointer-events-none h-[400px] grainger:h-[350px] w-auto"
-          alt="https://sigpwny.com/fallctf"
+          alt="https://2024.fallctf.com"
         />
       </div>
     </div>
   );
   const during_body = (
     <span className="animate-translate-right w-full">
-      <Scoreboard ctfd_url="https://fallctf.sigpwny.com" limit={5} />
+      <Scoreboard ctfd_url="https://2024.fallctf.com" limit={5} />
     </span>
   );
   const during_details_solve = (
@@ -85,7 +85,7 @@ export default function SignagePage() {
         Solve the Challenges!
       </p>
       <p className="text-xl text-yellow-dark leading-none font-medium">
-        sigpwny.com/fallctf
+        2024.fallctf.com
       </p>
     </span>
   );
@@ -102,7 +102,7 @@ export default function SignagePage() {
             ref={scopeHeader}
           >
             <p className="font-medium text-xl leading-none">
-              SIGPwny Presents
+              SIGPwny + WiCyS Presents
             </p>
           </motion.div>
           <motion.div
@@ -149,7 +149,7 @@ export default function SignagePage() {
         <span className="grainger:hidden grid grid-cols-2 gap-2">
           <motion.span layout="position">
             <p className="text-xl font-medium">
-              September 23rd, 12–6 PM
+              September 22nd, 12–6 PM
             </p>
             <p className="text-xl leading-none font-medium">
               CIF 3039
@@ -159,7 +159,7 @@ export default function SignagePage() {
         </span>
         <span className="hidden grainger:flex">
           <p className="text-xl leading-none font-medium">
-            September 23rd, 12–6 PM @ CIF 3039
+            September 22nd, 12–6 PM @ CIF 3039
           </p>
         </span>
       </motion.div>

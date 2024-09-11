@@ -28,8 +28,8 @@ export default function LogoReveal() {
     repeat: Infinity,
     repeatType: "loop"
   };
-  const dark_yellow = "rgba(255, 178, 0, 1.0)";
-  const light_yellow = "rgba(255, 255, 0, 1.0)";
+  const dark_yellow = "rgba(204, 102, 238, 1.0)";
+  const light_yellow = "rgba(227, 155, 250, 1.0)";
   return (
     <motion.svg
       viewBox="0 0 1024 150"
