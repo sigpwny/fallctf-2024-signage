@@ -37,8 +37,8 @@ export function ScoreboardTable(props: ScoreboardTableProps) {
           <span className="flex flex-col basis-1/12 font-mono">
             {idx + 1}
           </span>
-          <span className="flex flex-col basis-9/12 font-mono overflow-hidden">
-            <span className="whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
+          <span className="flex flex-col basis-9/12 text-xs justify-center overflow-hidden">
+            <span className="whitespace-nowrap overflow-hidden justify-center text-ellipsis min-w-0">
               {user.name}
             </span>
           </span>
@@ -117,12 +117,11 @@ export default function Scoreboard(props: ScoreboardProps) {
       const data_full = await response_full.json()
       // console.log(endpoint_scoreboard)
       const data = data_full.data;
-      console.log(data.data);
       // const data = test_scoreboard;
       const beginner = data.filter((t : any) => t.bracket_name === "Beginner");
       const advanced = data.filter((t : any) => t.bracket_name !== "Beginner");
-      setMatchedScoreboard(beginner as CTFdScoreboardUserTeam[]);
-      setUnmatchedScoreboard(advanced as CTFdScoreboardUserTeam[]);
+      setMatchedScoreboard(advanced as CTFdScoreboardUserTeam[]);
+      setUnmatchedScoreboard(beginner as CTFdScoreboardUserTeam[]);
     }
     fetchScoreboard();
     setInterval(fetchScoreboard, 1000 * 10);
