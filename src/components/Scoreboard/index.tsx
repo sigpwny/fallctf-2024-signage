@@ -57,49 +57,49 @@ export default function Scoreboard(props: ScoreboardProps) {
   const test_scoreboard = [
     {
       account_id: 1,
-      account_type: "user",
+      bracket_type: "user",
       name: "thisisareallylongnamethatshouldntfitinthescoreboardbutitdoes",
       score: 24803,
       pos: 1,
     },
     {
       account_id: 2,
-      account_type: "user",
+      bracket_type: "user",
       name: "test2",
       score: 50,
       pos: 2,
     },
     {
       account_id: 3,
-      account_type: "user",
+      bracket_type: "user",
       name: "test3",
       score: 25,
       pos: 3,
     },
     {
       account_id: 4,
-      account_type: "user",
+      bracket_type: "user",
       name: "test4",
       score: 10,
       pos: 4,
     },
     {
       account_id: 5,
-      account_type: "user",
+      bracket_type: "user",
       name: "test5",
       score: 5,
       pos: 5,
     },
     {
       account_id: 6,
-      account_type: "user",
+      bracket_type: "user",
       name: "test6",
       score: 1,
       pos: 6,
     },
     {
       account_id: 7,
-      account_type: "user",
+      bracket_type: "user",
       name: "test7",
       score: 0,
       pos: 7,
@@ -110,18 +110,19 @@ export default function Scoreboard(props: ScoreboardProps) {
   // Initialize split scoreboard from the CTFd API
   useEffect(() => {
     async function fetchScoreboard() {
-      const endpoint_scoreboard = new URL("api/v1/split_scores", ctfd_url);
       const endpoint_scoreboard_full = new URL("api/v1/scoreboard", ctfd_url);
-      const response = await fetch(endpoint_scoreboard, { redirect: "follow", cache: "reload" });
       const response_full = await fetch(endpoint_scoreboard_full, { redirect: "follow", cache: "reload" });
-      console.log(endpoint_scoreboard)
-      if (!response.ok || !response_full.ok) return;
-      const data = await response.json();
+      console.log({ response_full });
+      if (!response_full.ok) return;
       const data_full = await response_full.json()
-      if (!data.success || !data.data || !data.data.matched || !data.data.unmatched) return;
-      console.log(data.data)
-      setMatchedScoreboard(data.data.matched as CTFdScoreboardUserTeam[]);
-      setUnmatchedScoreboard(data_full.data.filter((t : any) => !data.data.matched.filter((t2 : any) => t.account_id === t2.account_id).length) as CTFdScoreboardUserTeam[]);
+      // console.log(endpoint_scoreboard)
+      const data = data_full.data;
+      console.log(data.data);
+      // const data = test_scoreboard;
+      const beginner = data.filter((t : any) => t.bracket_name === "Beginner");
+      const advanced = data.filter((t : any) => t.bracket_name !== "Beginner");
+      setMatchedScoreboard(beginner as CTFdScoreboardUserTeam[]);
+      setUnmatchedScoreboard(advanced as CTFdScoreboardUserTeam[]);
     }
     fetchScoreboard();
     setInterval(fetchScoreboard, 1000 * 10);
